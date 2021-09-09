@@ -14,15 +14,21 @@ public class Pessoa {
 	protected String cpf;
 	
 	protected String telefone;
+
+	protected String email;
+
+	protected String cep;
 	
-	public Pessoa(String nome, String cpf, String telefone) {
+	public Pessoa(String nome, String cpf, String telefone, String email, String cep) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
+		this.email = email;
+		this.cep = cep;
 	}
 	
 	public String toString() {
-		return "CPF:"+this.cpf+", Nome: "+this.nome+", Telefone:"+this.telefone+" ,";
+		return "CPF:"+this.cpf+", Nome: "+this.nome+", Telefone:"+this.telefone+", Email:"+this.email+"CEP:"+this.cep+", ";
 	}
 
 }

@@ -15,8 +15,8 @@ import lombok.*;
 @NoArgsConstructor
 public class Funcionario extends Pessoa{
 	private String dataContratacao;
-	public Funcionario(String nome, String  cpf, String  telefone, String  dataContratacao) {
-		super(nome, cpf, telefone);	
+	public Funcionario(String nome, String  cpf, String  telefone, String email, String cep, String  dataContratacao) {
+		super(nome, cpf, telefone, email, cep);
 		this.dataContratacao = dataContratacao;
 	}
 	public String toString() {

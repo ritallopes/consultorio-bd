@@ -15,8 +15,8 @@ import lombok.*;
 public class Paciente extends Pessoa {
 	private String convenio;
 	private String dataCadastro;
-	public Paciente(String cpf, String nome, String telefone, String convenio, String dataCadastro) {
-		super(nome, cpf, telefone);
+	public Paciente(String cpf, String nome, String telefone, String email, String cep, String convenio, String dataCadastro) {
+		super(nome, cpf, telefone, email, cep);
 		this.convenio = convenio;
 		this.dataCadastro = dataCadastro;
 	}

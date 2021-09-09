@@ -25,8 +25,8 @@ public class Medico extends Funcionario{
 	
 	private List<Consulta> consultas;
 	
-	public Medico(String cpf, String nome, String telefone, String dataContratacao, String crm, String especialidade, List<Consulta> consultas) {
-		super(nome, cpf, telefone, dataContratacao);
+	public Medico(String cpf, String nome, String telefone, String email, String cep, String dataContratacao, String crm, String especialidade, List<Consulta> consultas) {
+		super(nome, cpf, telefone, email, cep, dataContratacao);
 		this.crm = crm;
 		this.especialidade = especialidade;
 		this.consultas = consultas;
