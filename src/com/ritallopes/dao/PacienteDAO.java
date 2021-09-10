@@ -84,8 +84,18 @@ public class PacienteDAO implements IPaciente {
 	}
 
 	@Override
-	public void remove(Paciente paciente) {
-		// TODO Auto-generated method stub
+	public void delete(Paciente paciente) {
+		try {
+        	conectar();
+    		String sql = "DELETE FROM PACIENTE WHERE cpf=\"" + paciente.getCpf()+"\";";
+			statement.executeUpdate(sql);
+			desconectar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
 		
 	}
 
