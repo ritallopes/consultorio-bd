@@ -33,14 +33,14 @@ public class AtendenteDAO implements IAtendente{
         statement = connection.createStatement();
         String sql = "USE " + BANCO + ";";
         statement.executeUpdate(sql);
-        System.out.println("Conectado!");
+         //System.out.println("Conectado!");
     }
 
     private void desconectar() {
         try {
             statement.close();
             connection.close();
-            System.out.println("Desconectado!");
+            //System.out.println("Desconectado!");
         } catch (SQLException e) {
             e.printStackTrace();
         }

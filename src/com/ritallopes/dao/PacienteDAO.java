@@ -41,7 +41,7 @@ public class PacienteDAO implements IPaciente {
 		try {
 			statement.close();
 			connection.close();
-			System.out.println("Desconectado!");
+			//System.out.println("Desconectado!");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
