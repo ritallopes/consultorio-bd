@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.ritallopes.connection.ConnectionFactory;
+import com.ritallopes.entities.Consulta;
 import com.ritallopes.entities.Paciente;
 
 public class ConsultaDAO {
@@ -51,16 +52,7 @@ public class ConsultaDAO {
 			conectar();
 
 			StringBuffer buffer = new StringBuffer();
-			buffer.append("INSERT INTO PACIENTE (");
-			buffer.append(this.getFieldsDB());
-			buffer.append(") VALUES (");
-			buffer.append(getValuesDB(paciente));
-			buffer.append(")");
-			String sql = buffer.toString();
-
-			System.out.println("SQL para INSERIR que fica no EMPLOYEE : " + sql);
-
-			statement.executeUpdate(sql);
+			
 			desconectar();
 
 		} catch (ClassNotFoundException e) {
@@ -72,4 +64,40 @@ public class ConsultaDAO {
 	}
 
 
+	
+	
+	
+	
+	private String getFieldsDB() {
+		return "data_hora_inicio, data_hora_fim, presenca, medico_cpf, atd_agenda_cpf, paciente_cpf";
+	}
+
+	protected String getFieldsValuesDB(Consulta c) {
+
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("data_hora_inicio=\"");
+		buffer.append(c.getInicio());
+		buffer.append("\", data_hora_fim=\"");
+		buffer.append(c.getFim());
+		buffer.append("\",presenca=\"");
+		buffer.append(c.getPresenca());
+		buffer.append("\", medico_cpf=\"");
+		buffer.append(c.getMedico().getCpf());
+		buffer.append("\", atd_agenda_cpf=\"");
+		buffer.append(c.getMedico().getCpf());
+		buffer.append("\", paciente_cpf=\"");
+		buffer.append(c.getPaciente().getCpf());
+		
+		buffer.append("\"");
+
+		return buffer.toString();
+	}
+
+	protected String getValuesDB(Paciente p) {
+
+		StringBuffer buffer = new StringBuffer();
+		
+
+		return buffer.toString();
+	}
 }

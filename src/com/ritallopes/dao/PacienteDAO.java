@@ -82,8 +82,6 @@ public class PacienteDAO implements IPaciente {
 			buffer.append(")");
 			String sql = buffer.toString();
 
-			System.out.println("SQL para INSERIR que fica no EMPLOYEE : " + sql);
-
 			statement.executeUpdate(sql);
 			desconectar();
 
