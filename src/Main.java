@@ -55,11 +55,11 @@ public class Main {
 				if(option_aux == 1){
 					as.cadastrarPaciente();
 				} else if(option_aux == 2){
-					//TODO remover paciente do sistema
+					as.removerPaciente();
 				} else if(option_aux == 3){
 					as.mostrarTodosPacientes();
 				} else if(option_aux == 4){
-					//TODO atualizar dados do paciente
+					as.atualizarPaciente();
 				} else if(option_aux == 5){
 					as.agendarConsulta();
 				} else if(option_aux == 6){
