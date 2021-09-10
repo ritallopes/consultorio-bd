@@ -22,4 +22,12 @@ public class Funcionario extends Pessoa{
 	public String toString() {
 		return super.toString().concat(" Data Cadastro: "+this.dataContratacao+",");
 	}
+
+	public String getDataContratacao() {
+		return dataContratacao;
+	}
+
+	public void setDataContratacao(String dataContratacao) {
+		this.dataContratacao = dataContratacao;
+	}
 }
