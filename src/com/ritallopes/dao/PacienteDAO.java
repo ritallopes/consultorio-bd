@@ -5,10 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+import java.lang.ClassNotFoundException;
 import com.ritallopes.entities.Paciente;
 
-import entidade.Employee;
 
 import com.ritallopes.connection.ConnectionFactory;
 
@@ -98,7 +97,29 @@ public class PacienteDAO implements IPaciente {
 
 	@Override
 	public Paciente search(String cpf) {
-		// TODO Auto-generated method stub
+		
+		try {
+			conectar();
+			String sql = "SELECT * FROM PACIENTE WHERE cpf = \"" + cpf+"\";";
+			
+			ResultSet rs = statement.executeQuery(sql);
+			Paciente p = new Paciente();
+			if (rs.next()) {
+				p.setCpf(rs.getString("cpf"));
+				p.setNome(rs.getString("nome"));
+				p.setEmail(rs.getString("email"));
+				p.setConvenio(rs.getString("convenio"));
+				p.setDataCadastro(rs.getString("data_cadastro"));
+				p.setCep(rs.getString("cep"));
+			}
+			
+			desconectar();
+			return p;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

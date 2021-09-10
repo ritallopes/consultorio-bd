@@ -1,5 +1,7 @@
 
+import com.ritallopes.dao.PacienteDAO;
 import com.ritallopes.displayFunctions.Display;
+import com.ritallopes.entities.Paciente;
 import com.ritallopes.service.AtendenteService;
 import com.ritallopes.service.MedicoService;
 import com.ritallopes.service.PacienteService;
