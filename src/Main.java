@@ -53,7 +53,7 @@ public class Main {
 				option_aux = in.nextInt();
 
 				if(option_aux == 1){
-					//TODO cadastrar o paciente
+					as.cadastrarPaciente();
 				} else if(option_aux == 2){
 					//TODO remover paciente do sistema
 				} else if(option_aux == 3){
