@@ -51,7 +51,7 @@ public class AtendenteDAO implements IAtendente{
         try {
             conectar();
             StringBuffer buffer = new StringBuffer();
-            buffer.append("UPDATE PACIENTE SET ");
+            buffer.append("UPDATE ATENDENTE SET ");
             buffer.append(getFieldsValuesDB(atendente));
             buffer.append(" WHERE CPF=");
             buffer.append(atendente.getCpf());
@@ -74,14 +74,12 @@ public class AtendenteDAO implements IAtendente{
             conectar();
 
             StringBuffer buffer = new StringBuffer();
-            buffer.append("INSERT INTO PACIENTE (");
+            buffer.append("INSERT INTO ATENDENTE (");
             buffer.append(this.getFieldsDB());
             buffer.append(") VALUES (");
             buffer.append(getValuesDB(atendente));
             buffer.append(")");
             String sql = buffer.toString();
-
-            System.out.println("SQL para INSERIR que fica no EMPLOYEE : " + sql);
 
             statement.executeUpdate(sql);
             desconectar();
@@ -99,7 +97,7 @@ public class AtendenteDAO implements IAtendente{
 
         try {
             conectar();
-            String sql = "SELECT * FROM PACIENTE WHERE cpf = \"" + cpf+"\";";
+            String sql = "SELECT * FROM ATENDENTE WHERE cpf = \"" + cpf+"\";";
 
             ResultSet rs = statement.executeQuery(sql);
             Atendente a = new Atendente();
@@ -107,7 +105,7 @@ public class AtendenteDAO implements IAtendente{
                 a.setCpf(rs.getString("cpf"));
                 a.setNome(rs.getString("nome"));
                 a.setEmail(rs.getString("email"));
-                a.setDataContratacao(rs.getString("dataContratacao"));
+                a.setDataContratacao(rs.getString("data_contratacao"));
                 a.setCep(rs.getString("cep"));
             }
 
@@ -125,7 +123,7 @@ public class AtendenteDAO implements IAtendente{
     public void delete(Atendente atendente) {
         try {
             conectar();
-            String sql = "DELETE FROM PACIENTE WHERE cpf=\"" + atendente.getCpf() + "\";";
+            String sql = "DELETE FROM ATENDENTE WHERE cpf=\"" + atendente.getCpf() + "\";";
             statement.executeUpdate(sql);
             desconectar();
         } catch (SQLException e) {
@@ -140,7 +138,7 @@ public class AtendenteDAO implements IAtendente{
     public ArrayList<Atendente> listAtendentes() {
         try {
             conectar();
-            String sql = "SELECT * FROM PACIENTE;";
+            String sql = "SELECT * FROM ATENDENTE;";
             ResultSet rs = statement.executeQuery(sql);
             ArrayList<Atendente> atends = new ArrayList<Atendente>();
             while (rs.next()) {
@@ -149,7 +147,7 @@ public class AtendenteDAO implements IAtendente{
                 atendente.setNome(rs.getString("nome"));
                 atendente.setEmail(rs.getString("email"));
                 atendente.setCep(rs.getString("cep"));
-                atendente.setDataContratacao(rs.getDate("dataContratacao").toString());
+                atendente.setDataContratacao(rs.getDate("data_contratacao").toString());
                 atends.add(atendente);
             }
             desconectar();
@@ -163,7 +161,7 @@ public class AtendenteDAO implements IAtendente{
     }
 
     private String getFieldsDB() {
-        return "cpf, nome, email, cep, dataContratacao";
+        return "cpf, nome, email, cep, data_contratacao";
     }
 
     protected String getFieldsValuesDB(Atendente a) {
@@ -177,7 +175,7 @@ public class AtendenteDAO implements IAtendente{
         buffer.append(a.getEmail());
         buffer.append("\", cep=\"");
         buffer.append(a.getCep());
-        buffer.append("\", dataContratacao=\"");
+        buffer.append("\", data_contratacao=\"");
         buffer.append(a.getDataContratacao());
         buffer.append("\"");
 

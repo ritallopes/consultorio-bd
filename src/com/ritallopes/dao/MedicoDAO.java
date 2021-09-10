@@ -51,7 +51,7 @@ public class MedicoDAO implements IMedico{
         try {
             conectar();
             StringBuffer buffer = new StringBuffer();
-            buffer.append("UPDATE PACIENTE SET ");
+            buffer.append("UPDATE MEDICO SET ");
             buffer.append(getFieldsValuesDB(medico));
             buffer.append(" WHERE CPF=");
             buffer.append(medico.getCpf());
@@ -74,14 +74,12 @@ public class MedicoDAO implements IMedico{
             conectar();
 
             StringBuffer buffer = new StringBuffer();
-            buffer.append("INSERT INTO PACIENTE (");
+            buffer.append("INSERT INTO MEDICO (");
             buffer.append(this.getFieldsDB());
             buffer.append(") VALUES (");
             buffer.append(getValuesDB(medico));
             buffer.append(")");
             String sql = buffer.toString();
-
-            System.out.println("SQL para INSERIR que fica no EMPLOYEE : " + sql);
 
             statement.executeUpdate(sql);
             desconectar();
@@ -99,7 +97,7 @@ public class MedicoDAO implements IMedico{
 
         try {
             conectar();
-            String sql = "SELECT * FROM PACIENTE WHERE cpf = \"" + cpf+"\";";
+            String sql = "SELECT * FROM MEDICO WHERE cpf = \"" + cpf+"\";";
 
             ResultSet rs = statement.executeQuery(sql);
             Medico m = new Medico();
@@ -109,6 +107,7 @@ public class MedicoDAO implements IMedico{
                 m.setEmail(rs.getString("email"));
                 m.setCrm(rs.getString("crm"));
                 m.setEspecialidade(rs.getString("especialidade"));
+                m.setDataContratacao(rs.getDate("data_contratacao").toString());
                 m.setCep(rs.getString("cep"));
             }
 
@@ -126,7 +125,7 @@ public class MedicoDAO implements IMedico{
     public void delete(Medico medico) {
         try {
             conectar();
-            String sql = "DELETE FROM PACIENTE WHERE cpf=\"" + medico.getCpf() + "\";";
+            String sql = "DELETE FROM MEDICO WHERE cpf=\"" + medico.getCpf() + "\";";
             statement.executeUpdate(sql);
             desconectar();
         } catch (SQLException e) {
@@ -141,7 +140,7 @@ public class MedicoDAO implements IMedico{
     public ArrayList<Medico> listMedicos() {
         try {
             conectar();
-            String sql = "SELECT * FROM PACIENTE;";
+            String sql = "SELECT * FROM MEDICO;";
             ResultSet rs = statement.executeQuery(sql);
             ArrayList<Medico> medicos = new ArrayList<Medico>();
             while (rs.next()) {
@@ -151,7 +150,8 @@ public class MedicoDAO implements IMedico{
                 medico.setEmail(rs.getString("email"));
                 medico.setCep(rs.getString("cep"));
                 medico.setCrm(rs.getString("crm"));
-                medico.setEspecialidade(rs.getDate("especialidade").toString());
+                medico.setEspecialidade(rs.getString("especialidade"));
+                medico.setDataContratacao(rs.getDate("data_contratacao").toString());
                 medicos.add(medico);
             }
             desconectar();
@@ -165,7 +165,7 @@ public class MedicoDAO implements IMedico{
     }
 
     private String getFieldsDB() {
-        return "cpf, nome, email, cep, crm, especialiadade";
+        return "cpf, nome, email, cep, crm, especialiadade, data_contratacao";
     }
 
     protected String getFieldsValuesDB(Medico m) {
@@ -183,6 +183,8 @@ public class MedicoDAO implements IMedico{
         buffer.append(m.getCrm());
         buffer.append("\", especialidade=\"");
         buffer.append(m.getEspecialidade());
+        buffer.append("\", data_contratacao=\"");
+        buffer.append(m.getDataContratacao());
         buffer.append("\"");
 
         return buffer.toString();
@@ -196,6 +198,7 @@ public class MedicoDAO implements IMedico{
         buffer.append(m.getEmail() + "\",\"");
         buffer.append(m.getCep() + "\",\"");
         buffer.append(m.getCrm() + "\",\"");
+        buffer.append(m.getDataContratacao() + "\",\"");
         buffer.append(m.getEspecialidade() + "\"");
 
         return buffer.toString();

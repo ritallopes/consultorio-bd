@@ -31,6 +31,9 @@ public class Medico extends Funcionario{
 		this.especialidade = especialidade;
 		this.consultas = consultas;
 	}
+	public Medico() {
+		
+	}
 	public String toString() {
 		return super.toString().concat(" CRM: "+this.crm+", Especialidade: "+this.especialidade);
 	}
