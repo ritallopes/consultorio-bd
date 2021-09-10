@@ -196,8 +196,8 @@ public class MedicoDAO implements IMedico{
         buffer.append("\"" + m.getCpf() + "\",\"");
         buffer.append(m.getNome() + "\",\"");
         buffer.append(m.getEmail() + "\",\"");
-        buffer.append(m.getCep() + "\",\"");
-        buffer.append(m.getCrm() + "\",\"");
+        buffer.append(m.getCep() + "\",");
+        buffer.append(m.getCrm() + ",\"");
         buffer.append(m.getDataContratacao() + "\",\"");
         buffer.append(m.getEspecialidade() + "\"");
 
