@@ -12,6 +12,7 @@ public class Main {
 		final int OPTION_ATTENDANT = 2;
 		final int OPTION_MEDIC = 3;
 		final int CANCEL = 0;
+	
 		
 		AtendenteService as = new AtendenteService();
 		PacienteService ps = new PacienteService();

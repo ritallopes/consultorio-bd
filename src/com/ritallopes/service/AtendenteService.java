@@ -15,8 +15,7 @@ public class AtendenteService {
 		for (Paciente p: pcs) {
 			index++;
 			System.out.println(index + " - "+ p.toString());
-		}
-		
+		}	
 		
 	}
 

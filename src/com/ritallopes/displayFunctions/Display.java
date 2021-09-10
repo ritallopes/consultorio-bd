@@ -7,7 +7,7 @@ public class Display {
         System.out.println(separator);
         System.out.println("Digite 1 para area do Paciente");
         System.out.println("Digite 2 para Area do Atendente");
-        System.out.println("Digite 3 para Area do MEdico");
+        System.out.println("Digite 3 para Area do Medico");
         System.out.println("Digite 0 para encerrar o sistema");
     }
 
