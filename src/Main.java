@@ -1,7 +1,7 @@
 
-import com.ritallopes.dao.PacienteDAO;
+import com.ritallopes.dao.*;
+import com.ritallopes.entities.*;
 import com.ritallopes.displayFunctions.Display;
-import com.ritallopes.entities.Paciente;
 import com.ritallopes.service.AtendenteService;
 import com.ritallopes.service.MedicoService;
 import com.ritallopes.service.PacienteService;
@@ -61,7 +61,7 @@ public class Main {
 				} else if(option_aux == 4){
 					//TODO atualizar dados do paciente
 				} else if(option_aux == 5){
-					//TODO agendar consulta
+					as.agendarConsulta();
 				} else if(option_aux == 6){
 					//TODO atualizar consulta
 				} else if(option_aux == 7){

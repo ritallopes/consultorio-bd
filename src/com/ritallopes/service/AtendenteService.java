@@ -3,16 +3,18 @@ package com.ritallopes.service;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.ritallopes.dao.AtendenteDAO;
+import com.ritallopes.dao.MedicoDAO;
 import com.ritallopes.dao.PacienteDAO;
+import com.ritallopes.entities.Atendente;
+import com.ritallopes.entities.Medico;
 import com.ritallopes.entities.Paciente;
 
 public class AtendenteService {
 	Scanner in = new Scanner(System.in);
 
 	public void mostrarTodosPacientes() {
-		
 		ArrayList<Paciente> pcs = PacienteDAO.getInstance().listPacientes();
-		
 		int index = 0;
 		for (Paciente p: pcs) {
 			index++;
@@ -51,9 +53,50 @@ public class AtendenteService {
 
 	}
 
+	
+	
 	public void agendarConsulta(){
+		
+		if(escolherAtendente() == null) {
+			System.out.println("CPF não encontrado, tente novamente!");
+			return;
+		}
+		
+		Paciente p = escolherPaciente();
+		Medico m = escolherMedico();
+		
 
 	}
+	public Atendente escolherAtendente() {
+		System.out.println("Digite seu CPF: ");
+		String cpf = in.nextLine();
+		Atendente a = AtendenteDAO.getInstance().search(cpf);
+		return a;		
+	}
+	
+	public Paciente escolherPaciente() {
+		ArrayList<Paciente> pcs = PacienteDAO.getInstance().listPacientes();
+		int index = 0;
+		System.out.println("Escolha o paciente: ");
+		for (Paciente p: pcs) {
+			index++;
+			System.out.println(index + " - "+ p.toString());
+		}	
+		int i = in.nextInt();
+		return pcs.get(i-1);	
+	}
+	public Medico escolherMedico() {
+		ArrayList<Medico> ms = MedicoDAO.getInstance().listMedicos();
+		int index = 0;
+		System.out.println("Escolha o medico: ");
+		for (Medico m: ms) {
+			index++;
+			System.out.println(index + " - "+ m.toString());
+		}	
+		int i = in.nextInt();
+		return ms.get(i-1);
+	}
+
 
 	public void atualizarConsulta(){
 

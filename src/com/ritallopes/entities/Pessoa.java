@@ -28,7 +28,7 @@ public class Pessoa {
 	}
 	
 	public String toString() {
-		return "CPF:"+this.cpf+", Nome: "+this.nome+", Telefone:"+this.telefone+", Email:"+this.email+"CEP:"+this.cep+", ";
+		return "CPF:"+this.cpf+", Nome: "+this.nome+" Email:"+this.email+"CEP:"+this.cep+", ";
 	}
 
 	public String getCpf() { return this.cpf;}
