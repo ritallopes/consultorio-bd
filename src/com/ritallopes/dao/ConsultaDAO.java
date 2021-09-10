@@ -71,7 +71,7 @@ public class ConsultaDAO {
 		}
 
 	}
-	private ArrayList<Consulta> listConsultas(){
+	public ArrayList<Consulta> listConsultas(){
 		try {
 			conectar();
 			String sql = "SELECT * FROM CONSULTA;";

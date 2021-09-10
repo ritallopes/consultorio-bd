@@ -33,7 +33,7 @@ public class Main {
 				option_aux = in.nextInt();
 
 				if(option_aux == 1){
-					//TODO mostrar as consultas agendadas do paciente
+					ps.mostrarConsultas();
 				} else if(option_aux == 1){
 					//TODO solicitar a marcacao de uma consulta
 				} else if(option_aux == 3){

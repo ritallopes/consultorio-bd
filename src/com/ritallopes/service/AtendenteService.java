@@ -55,17 +55,17 @@ public class AtendenteService {
 	public void atualizarPaciente(){
 		System.out.println("Novo nome do paciente: ");
 		String nome = in.nextLine();
-		System.out.println("CPF do paciente: ");
+		System.out.println("Novo CPF do paciente: ");
 		String cpf = in.nextLine();
-		System.out.println("Telefone do paciente: ");
+		System.out.println("Novo Telefone do paciente: ");
 		String telefone = in.nextLine();
-		System.out.println("Email do paciente: ");
+		System.out.println("Novo Email do paciente: ");
 		String email = in.nextLine();
-		System.out.println("CEP do paciente: ");
+		System.out.println("Novo CEP do paciente: ");
 		String cep = in.nextLine();
-		System.out.println("Convenio do paciente: ");
+		System.out.println("Novo Convenio do paciente: ");
 		String convenio = in.nextLine();
-		System.out.println("Data de cadastro do paciente: ");
+		System.out.println("Nova Data de cadastro do paciente: ");
 		String dataCadastro = in.nextLine();
 
 		Paciente paciente = new Paciente(cpf, nome,telefone, email, cep, convenio, dataCadastro);
