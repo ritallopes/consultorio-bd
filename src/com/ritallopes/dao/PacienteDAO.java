@@ -8,54 +8,57 @@ import java.util.ArrayList;
 
 import com.ritallopes.entities.Paciente;
 
+import entidade.Employee;
 
 import com.ritallopes.connection.ConnectionFactory;
 
 public class PacienteDAO implements IPaciente {
 	private static PacienteDAO pacienteDAO;
+
 	public static PacienteDAO getInstance() {
-		if(pacienteDAO == null) {
+		if (pacienteDAO == null) {
 			pacienteDAO = new PacienteDAO();
 		}
-		return pacienteDAO;		
+		return pacienteDAO;
 	}
 
-	
-	private Connection connection;  
+	private Connection connection;
 	private Statement statement;
 	private static String BANCO = "consultorio";
+
 	public PacienteDAO() {
-		
+
 	}
-	
-	private void conectar() throws ClassNotFoundException, SQLException  {
-        connection = ConnectionFactory.connection();  
+
+	private void conectar() throws ClassNotFoundException, SQLException {
+		connection = ConnectionFactory.connection();
 		statement = connection.createStatement();
-		String sql ="USE "+BANCO+";";
+		String sql = "USE " + BANCO + ";";
 		statement.executeUpdate(sql);
-        System.out.println("Conectado!");     
-	}	
-	private void desconectar() {  
-		try {  
-			statement.close();  
-			connection.close();  
-			System.out.println("Desconectado!");  
-		} catch (SQLException e) { 
+		System.out.println("Conectado!");
+	}
+
+	private void desconectar() {
+		try {
+			statement.close();
+			connection.close();
+			System.out.println("Desconectado!");
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}  
+		}
 	}
 
 	@Override
 	public void update(Paciente paciente) {
 		try {
-        	conectar();
-        	StringBuffer buffer = new StringBuffer();
-            buffer.append("UPDATE PACIENTE SET ");
-            buffer.append(getFieldsValuesDB(paciente));
-            buffer.append(" WHERE CPF=");
-            buffer.append(paciente.getCpf());
-            buffer.append(";");
-            String sql = buffer.toString();
+			conectar();
+			StringBuffer buffer = new StringBuffer();
+			buffer.append("UPDATE PACIENTE SET ");
+			buffer.append(getFieldsValuesDB(paciente));
+			buffer.append(" WHERE CPF=");
+			buffer.append(paciente.getCpf());
+			buffer.append(";");
+			String sql = buffer.toString();
 			statement.executeUpdate(sql);
 			desconectar();
 		} catch (SQLException e) {
@@ -64,17 +67,33 @@ public class PacienteDAO implements IPaciente {
 			e.printStackTrace();
 		}
 
-		
 	}
 
 	@Override
 	public void insert(Paciente paciente) {
-		StringBuffer buffer = new StringBuffer();
-		
-		buffer.append(false);
-		
-		// TODO Auto-generated method stub
-		
+		try {
+
+			conectar();
+
+			StringBuffer buffer = new StringBuffer();
+			buffer.append("INSERT INTO PACIENTE (");
+			buffer.append(this.getFieldsDB());
+			buffer.append(") VALUES (");
+			buffer.append(getValuesDB(paciente));
+			buffer.append(")");
+			String sql = buffer.toString();
+
+			System.out.println("SQL para INSERIR que fica no EMPLOYEE : " + sql);
+
+			statement.executeUpdate(sql);
+			desconectar();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
@@ -86,8 +105,8 @@ public class PacienteDAO implements IPaciente {
 	@Override
 	public void delete(Paciente paciente) {
 		try {
-        	conectar();
-    		String sql = "DELETE FROM PACIENTE WHERE cpf=\"" + paciente.getCpf()+"\";";
+			conectar();
+			String sql = "DELETE FROM PACIENTE WHERE cpf=\"" + paciente.getCpf() + "\";";
 			statement.executeUpdate(sql);
 			desconectar();
 		} catch (SQLException e) {
@@ -96,7 +115,6 @@ public class PacienteDAO implements IPaciente {
 			e.printStackTrace();
 		}
 
-		
 	}
 
 	@Override
@@ -106,7 +124,7 @@ public class PacienteDAO implements IPaciente {
 			String sql = "SELECT * FROM PACIENTE;";
 			ResultSet rs = statement.executeQuery(sql);
 			ArrayList<Paciente> pacs = new ArrayList<Paciente>();
-			while (rs.next()){
+			while (rs.next()) {
 				Paciente paciente = new Paciente();
 				paciente.setCpf(rs.getString("cpf"));
 				paciente.setNome(rs.getString("nome"));
@@ -118,7 +136,7 @@ public class PacienteDAO implements IPaciente {
 			}
 			desconectar();
 			return pacs;
-		} catch(SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -126,31 +144,40 @@ public class PacienteDAO implements IPaciente {
 		return null;
 	}
 
-	
 	private String getFieldsDB() {
-		return "nome, cpf, email, cep, convenio, data_cadastro";
+		return "cpf, nome, email, cep, convenio, data_cadastro";
 	}
-	
+
 	protected String getFieldsValuesDB(Paciente p) {
 
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("cpf=\"");
-        buffer.append(p.getCpf());
-        buffer.append("\", nome=\"");
-        buffer.append(p.getNome());
-        buffer.append("\", email=\"");
-        buffer.append(p.getEmail());
-        buffer.append("\", cep=\"");
-        buffer.append(p.getCep());
-        buffer.append("\", convenio=\"");
-        buffer.append(p.getConvenio());
-        buffer.append("\", data_cadastro=\"");
-        buffer.append(p.getDataCadastro());
-        buffer.append("\"");
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("cpf=\"");
+		buffer.append(p.getCpf());
+		buffer.append("\", nome=\"");
+		buffer.append(p.getNome());
+		buffer.append("\", email=\"");
+		buffer.append(p.getEmail());
+		buffer.append("\", cep=\"");
+		buffer.append(p.getCep());
+		buffer.append("\", convenio=\"");
+		buffer.append(p.getConvenio());
+		buffer.append("\", data_cadastro=\"");
+		buffer.append(p.getDataCadastro());
+		buffer.append("\"");
 
+		return buffer.toString();
+	}
 
-        return buffer.toString();
-    }
+	protected String getValuesDB(Paciente p) {
 
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("\"" + p.getCpf() + "\",\"");
+		buffer.append(p.getNome() + "\",\"");
+		buffer.append(p.getEmail() + "\",\"");
+		buffer.append(p.getCep() + "\",\"");
+		buffer.append(p.getConvenio() + "\",\"");
+		buffer.append(p.getDataCadastro() + "\"");
 
+		return buffer.toString();
+	}
 }
