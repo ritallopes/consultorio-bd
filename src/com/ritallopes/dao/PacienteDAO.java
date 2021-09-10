@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.ritallopes.entities.Paciente;
+
 
 import com.ritallopes.connection.ConnectionFactory;
 
@@ -47,7 +47,23 @@ public class PacienteDAO implements IPaciente {
 
 	@Override
 	public void update(Paciente paciente) {
-		// TODO Auto-generated method stub
+		try {
+        	conectar();
+        	StringBuffer buffer = new StringBuffer();
+            buffer.append("UPDATE PACIENTE SET ");
+            buffer.append(getFieldsValuesDB(paciente));
+            buffer.append(" WHERE CPF=");
+            buffer.append(paciente.getCpf());
+            buffer.append(";");
+            String sql = buffer.toString();
+			statement.executeUpdate(sql);
+			desconectar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
 		
 	}
 
@@ -82,8 +98,8 @@ public class PacienteDAO implements IPaciente {
 			ArrayList<Paciente> pacs = new ArrayList<Paciente>();
 			while (rs.next()){
 				Paciente paciente = new Paciente();
-				paciente.setCpf(rs.getString("nome"));
-				paciente.setNome(rs.getString("cpf"));
+				paciente.setCpf(rs.getString("cpf"));
+				paciente.setNome(rs.getString("nome"));
 				paciente.setEmail(rs.getString("email"));
 				paciente.setCep(rs.getString("cep"));
 				paciente.setConvenio(rs.getString("convenio"));
@@ -104,5 +120,27 @@ public class PacienteDAO implements IPaciente {
 	private String getFieldsDB() {
 		return "nome, cpf, email, cep, convenio, data_cadastro";
 	}
+	
+	protected String getFieldsValuesDB(Paciente p) {
+
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("cpf=\"");
+        buffer.append(p.getCpf());
+        buffer.append("\", nome=\"");
+        buffer.append(p.getNome());
+        buffer.append("\", email=\"");
+        buffer.append(p.getEmail());
+        buffer.append("\", cep=\"");
+        buffer.append(p.getCep());
+        buffer.append("\", convenio=\"");
+        buffer.append(p.getConvenio());
+        buffer.append("\", data_cadastro=\"");
+        buffer.append(p.getDataCadastro());
+        buffer.append("\"");
+
+
+        return buffer.toString();
+    }
+
 
 }
