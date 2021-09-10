@@ -18,7 +18,8 @@ public class Pessoa {
 	protected String email;
 
 	protected String cep;
-	
+	public Pessoa() {};
+
 	public Pessoa(String nome, String cpf, String telefone, String email, String cep) {
 		this.nome = nome;
 		this.cpf = cpf;
@@ -31,4 +32,17 @@ public class Pessoa {
 		return "CPF:"+this.cpf+", Nome: "+this.nome+", Telefone:"+this.telefone+", Email:"+this.email+"CEP:"+this.cep+", ";
 	}
 
+	public String getCpf() { return this.cpf;}
+	public void setCpf(String cpf) { this.cpf = cpf;}
+	public String getNome() { return this.nome;}
+	public void setNome(String nome) { this.nome = nome;}
+	public String getTelefone() { return this.telefone;}
+	public void setTelefone(String telefone) { this.telefone = telefone;}
+	public String getEmail() { return this.email;}
+	public void setEmail(String email) { this.email = email;}
+	public String getCep() { return this.cep;}
+	public void setCep(String cep) { this.cep = cep;}
+	
+	
+	
 }
