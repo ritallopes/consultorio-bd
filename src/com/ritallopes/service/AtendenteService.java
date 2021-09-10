@@ -44,11 +44,34 @@ public class AtendenteService {
 	}
 
 	public void removerPaciente(){
+		System.out.println("Informe o CPF do paciente: ");
+		String cpf = in.nextLine();
 
+		PacienteDAO pacienteDAO = new PacienteDAO();
+		Paciente paciente = pacienteDAO.search(cpf);
+		pacienteDAO.delete(paciente);
 	}
 
 	public void atualizarPaciente(){
+		System.out.println("Novo nome do paciente: ");
+		String nome = in.nextLine();
+		System.out.println("CPF do paciente: ");
+		String cpf = in.nextLine();
+		System.out.println("Telefone do paciente: ");
+		String telefone = in.nextLine();
+		System.out.println("Email do paciente: ");
+		String email = in.nextLine();
+		System.out.println("CEP do paciente: ");
+		String cep = in.nextLine();
+		System.out.println("Convenio do paciente: ");
+		String convenio = in.nextLine();
+		System.out.println("Data de cadastro do paciente: ");
+		String dataCadastro = in.nextLine();
 
+		Paciente paciente = new Paciente(cpf, nome,telefone, email, cep, convenio, dataCadastro);
+
+		PacienteDAO pacienteDAO = new PacienteDAO();
+		pacienteDAO.update(paciente);
 	}
 
 	public void agendarConsulta(){
