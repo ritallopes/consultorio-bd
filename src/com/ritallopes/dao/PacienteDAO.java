@@ -12,6 +12,14 @@ import com.ritallopes.entities.Paciente;
 import com.ritallopes.connection.ConnectionFactory;
 
 public class PacienteDAO implements IPaciente {
+	private static PacienteDAO pacienteDAO;
+	public static PacienteDAO getInstance() {
+		if(pacienteDAO == null) {
+			pacienteDAO = new PacienteDAO();
+		}
+		return pacienteDAO;		
+	}
+
 	
 	private Connection connection;  
 	private Statement statement;

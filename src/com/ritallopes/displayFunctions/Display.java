@@ -5,9 +5,9 @@ public class Display {
 
     public void showIdentificationMenu(){
         System.out.println(separator);
-        System.out.println("Digite 1 para Área do Paciente");
-        System.out.println("Digite 2 para Área do Atendente");
-        System.out.println("Digite 3 para Área do Médico");
+        System.out.println("Digite 1 para area do Paciente");
+        System.out.println("Digite 2 para Area do Atendente");
+        System.out.println("Digite 3 para Area do MEdico");
         System.out.println("Digite 0 para encerrar o sistema");
     }
 
@@ -29,7 +29,7 @@ public class Display {
         System.out.println("--ATENDENTE--");
         System.out.println("Digite 1 para cadastrar paciente");
         System.out.println("Digite 2 para remover paciente");
-        System.out.println("Digite 3 buscar paciente");
+        System.out.println("Digite 3 ver todos os pacientes");
         System.out.println("Digite 4 para atualizar paciente");
         System.out.println("Digite 5 para agendar consulta");
         System.out.println("Digite 6 para atualizar consulta");

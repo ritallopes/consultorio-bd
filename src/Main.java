@@ -1,4 +1,8 @@
+
 import com.ritallopes.displayFunctions.Display;
+import com.ritallopes.service.AtendenteService;
+import com.ritallopes.service.MedicoService;
+import com.ritallopes.service.PacienteService;
 
 import java.util.Scanner;
 
@@ -8,6 +12,10 @@ public class Main {
 		final int OPTION_ATTENDANT = 2;
 		final int OPTION_MEDIC = 3;
 		final int CANCEL = 0;
+		
+		AtendenteService as = new AtendenteService();
+		PacienteService ps = new PacienteService();
+		MedicoService ms = new MedicoService();
 
 		Scanner in = new Scanner(System.in);
 		Display display = new Display();
@@ -47,7 +55,7 @@ public class Main {
 				} else if(option_aux == 2){
 					//TODO remover paciente do sistema
 				} else if(option_aux == 3){
-					//TODO buscar pelo paciente
+					as.mostrarTodosPacientes();
 				} else if(option_aux == 4){
 					//TODO atualizar dados do paciente
 				} else if(option_aux == 5){
@@ -75,5 +83,6 @@ public class Main {
 				}
 			}
 		}
+
 	}
 }
